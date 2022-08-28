@@ -405,16 +405,6 @@ main .search {
 }
 
 /* RecentLecture */
-.recent-lecture-container {
-  padding: 1.5rem 0;
-}
-
-.recent-lecture-container-margin {
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 0 0.625rem;
-}
-
 .title-section__lecture-container {
   display: flex;
 }
@@ -432,13 +422,13 @@ main .search {
   margin-right: 0.5rem;
 }
 
-.recent-lecture-container ul {
+.recent-lectures {
   display: flex;
   justify-content: space-between;
 }
 
 /* RecentLectureItem */
-.recent-lecture-container li {
+.recent-lectures li {
   width: 48.5%;
   min-width: 31.25rem;
 }
