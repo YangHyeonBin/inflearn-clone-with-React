@@ -19,7 +19,7 @@ export default function SwipeItem({
   };
 
   return (
-    <li key={keyword}>
+    <li className="swipe-item-wrapper" key={keyword}>
       <a className="swipe-item" style={backgroundStyle}>
         <div className="wrapper__swipe-item-contents">
           <div className="desc-wrapper__swipe-item-content" style={fontStyle}>

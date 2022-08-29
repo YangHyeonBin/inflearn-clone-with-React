@@ -1,9 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 
-export default function SwipePaginationButtons({ keyword }) {
+export default function SwipePaginationButtons({
+  keyword,
+  paginationButtonClickHandler,
+  clicked,
+}) {
   return (
-    <li key={keyword}>
-      <button type="button">{keyword}</button>
+    <li key={keyword} className={clicked ? 'active' : ''}>
+      <button type="button" onClick={paginationButtonClickHandler}>
+        {keyword}
+      </button>
     </li>
   );
 }
