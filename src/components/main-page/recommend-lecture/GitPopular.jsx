@@ -1,5 +1,5 @@
 import React from 'react';
-import { jsPopulars } from './jsPopulars';
+import { gitPopulars } from './gitPopulars';
 import Lecture from './Lecture';
 
 import { mainSectionTitles } from '../mainSectionTitles';
@@ -7,15 +7,16 @@ import Wrapper from '../UI/Wrapper';
 import Heading from '../UI/Heading';
 import LectureBox from '../UI/LectureBox';
 
-export default function JSPopular() {
+export default function GitPopular() {
   return (
     <Wrapper>
-      <Heading heading={mainSectionTitles[2]} />
+      <Heading heading={mainSectionTitles[3]} />
       <LectureBox>
         <ul className="lecture-list">
-          {jsPopulars.map(lecture => (
+          {gitPopulars.map(lecture => (
             <Lecture
               key={lecture.title}
+              lecture_id={lecture.id}
               title={lecture.title}
               author={lecture.author}
               rating={lecture.rating}

@@ -1,5 +1,7 @@
 import React from 'react';
-import Rating from './Rating';
+import { Link } from 'react-router-dom';
+
+import Rating from '../../rating/Rating';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faPercent, faTicket);
 
 export default function Lecture({
+  lecture_id,
   title,
   author,
   rating,
@@ -31,7 +34,7 @@ export default function Lecture({
 
   return (
     <li>
-      <a className="lecture-item">
+      <Link to={`/lecture/${lecture_id}`} className="lecture-item">
         <img className="lecture-thumbnail" src={img} alt={title} />
         <h3 className="lecture-title">{title}</h3>
         <div className="lecture-author">{author}</div>
@@ -58,7 +61,7 @@ export default function Lecture({
             <span className="discount-tag-content">{discountTag}</span>
           </div>
         )}
-      </a>
+      </Link>
     </li>
   );
 }

@@ -12,7 +12,7 @@ import Roadmap from './Roadmap';
 import Banner from './Banner';
 import Apply from './Apply';
 
-export default function Main() {
+export default function MainPage() {
   return (
     <main>
       <Swiper />

@@ -11,7 +11,7 @@ export default function Header() {
   const navMenu = ['강의', '로드맵', '멘토링', '커뮤니티', '인프런'];
 
   return (
-    <header>
+    <header className="header-wrapper-shadow">
       <div className="header-wrapper">
         <a href="#">
           <InflearnLogo />
@@ -35,7 +35,7 @@ export default function Header() {
               </button>
             </div>
             <a href="#" className="anchor__recent-lecture">
-              <FontAwesomeIcon icon={faPen} id='recent-lecture-icon' />
+              <FontAwesomeIcon icon={faPen} id="recent-lecture-icon" />
               최근강의
             </a>
             <a href="#" className="anchor__cart" aria-label="강의 장바구니">
@@ -44,7 +44,7 @@ export default function Header() {
             <a href="#" className="anchor__alert" aria-label="알림">
               <FontAwesomeIcon icon={faBell} />
             </a>
-            <a href='#' className="anchor__user-info" aria-label="내 정보">
+            <a href="#" className="anchor__user-info" aria-label="내 정보">
               <FontAwesomeIcon icon={faUser} />
             </a>
           </div>
