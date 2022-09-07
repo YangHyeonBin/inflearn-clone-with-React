@@ -16,14 +16,15 @@ export default function Swiper() {
 
   const [slides, setSlides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentTimerId, setCurrentTimerId] = useState(-1);
 
   const [play, setPlay] = useState(true);
 
   const maxSlide = swiperContents.length - 1;
 
-  const rightArrowClickHandler = () => {
+  const rightArrowClickHandler = (_timer) => {
     setCurrentSlide(prevState => (prevState < maxSlide ? prevState + 1 : 0));
-    clearTimeout(timer);
+    clearTimeout(_timer);
   };
 
   const leftArrowClickHandler = () => {
@@ -34,8 +35,12 @@ export default function Swiper() {
   // let timer = setTimeout(rightArrowClickHandler, 5000);
 
   useEffect(() => {
+    let timer = setTimeout(() => rightArrowClickHandler(timer), 5000);
+    console.log(timer);
+    setCurrentTimerId(timer);
+
     !play && clearTimeout(timer);
-  }, [play]);
+  }, [currentSlide , play]);
 
   useEffect(() => {
     const DELAY_TIME = 1000;
@@ -113,7 +118,8 @@ export default function Swiper() {
                 index={index}
                 currentSlide={currentSlide}
                 paginationButtonClickHandler={() => {
-                  clearTimeout(timer);
+                  // clearTimeout(timer);
+                  clearTimeout(currentTimerId);
                   setCurrentSlide(index);
                 }}
               />
