@@ -10,6 +10,8 @@ export default function SwipeItem({
   fontColor,
   tagColor,
   tagBackground,
+  isActive,
+  index,
 }) {
   const backgroundStyle = { backgroundColor: background };
   const fontStyle = { color: fontColor };
@@ -19,7 +21,11 @@ export default function SwipeItem({
   };
 
   return (
-    <li className="swipe-item-wrapper" key={keyword}>
+    <li
+      className={`swipe-item-wrapper ${
+        isActive === index ? 'swipe-item-active' : ''
+      }`}
+      key={keyword}>
       <a className="swipe-item" style={backgroundStyle}>
         <div className="wrapper__swipe-item-contents">
           <div className="desc-wrapper__swipe-item-content" style={fontStyle}>

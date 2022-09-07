@@ -128,6 +128,10 @@ header nav ul {
   padding: 1em 1.5em;
 }
 
+.menu-item:hover {
+  color: #00c471;
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -193,7 +197,31 @@ header nav ul {
 
 /* SwipeItem */
 .swipe-item-wrapper {
-  width: 100vw;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 0;
+}
+
+/* @keyframes swipe {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -100vw;
+  }
+} */
+
+.swipe-item-active {
+  z-index: 1;
+  /* animation-name: swipe;
+  animation-duration: 2000ms; */
 }
 
 .swipe-item {
@@ -290,9 +318,12 @@ header nav ul {
 }
 
 .swipe-items {
-  width: 900vw;
+  /* width: 900vw;
   display: flex;
-  transition: transform 200ms;
+  transition: transform 200ms; */
+  width: 100vw;
+  height: 20rem;
+  position: relative;
 }
 
 .swipe-pagination-wrapper {
@@ -329,6 +360,7 @@ header nav ul {
   flex: 0 0 auto;
   margin-right: 0.5rem;
   cursor: pointer;
+  transition: all 200ms;
 }
 
 .swipe-pagination-button-container li:first-child {
@@ -365,9 +397,12 @@ main .search {
   padding: 3rem 0 1.25rem;
 }
 
+.search-bar-wrapper {
+  margin-bottom: 0.375rem;
+}
+
 .search .search-bar {
   position: relative;
-  margin-bottom: 0.375rem;
 }
 
 .search .search-bar input {
@@ -895,6 +930,7 @@ main .search {
   padding: 2.25rem;
   background-position: 40%;
   width: 100vw;
+  transition: all 500ms ease;
 }
 
 .banner-item-wrapper {
@@ -943,6 +979,11 @@ main .search {
   margin-right: 0.25rem;
 }
 
+.banner-swipe-button--disabled {
+  background-color: hsla(0, 0%, 97.6%, 0.8);
+  color: #979797;
+}
+
 .banner-pagination-container {
   display: flex;
   height: 0.375rem;
@@ -956,12 +997,13 @@ main .search {
   width: 0.375rem;
   background-color: white;
   opacity: 0.48;
-  margin-right: 1rem;
+  margin-right: 0.625rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 500ms ease;
 }
 
-.banner-pagination.active {
+.banner-pagination--active {
   width: 2rem;
   opacity: 1;
 }
@@ -1373,31 +1415,60 @@ footer {
 .lecture-side-bar-wrapper {
   padding: 0 0.5rem;
   flex: 1 1 0;
+  letter-spacing: -0.3px;
+  line-height: 1.43;
 }
 
 .lecture-side-bar {
   margin: 1.75rem 2.125rem 1.25rem auto;
+  position: sticky;
+  top: 75px;
+  width: 20.938rem;
+}
+
+.auth-button-wrapper {
+  display: flex;
+  margin: 1.25rem 0 1rem;
 }
 
 .auth-button {
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: 0.688rem 0.625rem 0.688rem 1rem;
+  border: 1px solid rgba(20, 150, 223, 0.25);
+  border-radius: 8px;
+  background-color: #e8f5ff;
+  color: #3e4042;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background-color: #fafdff;
+  border-color: #699ce8;
 }
 
 .auth-button img {
   display: block;
   width: 2.375rem;
   height: 2.375rem;
+  margin-right: 0.625rem;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.auth-info {
+  flex: 1 1 auto;
 }
 
 .auth-button .title-container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.25rem;
 }
 
 .auth-button h3 {
   font-weight: 700;
-  letter-spacing: -0.3px;
   position: relative;
 }
 
@@ -1409,4 +1480,92 @@ footer {
   width: 100%;
   height: 50%;
   background-color: rgba(20, 150, 223, 0.16);
+}
+
+.auth-icon {
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.auth-icon span {
+  text-decoration: underline;
+  text-underline-position: under;
+  margin-right: 5.67px;
+}
+
+.auth-icon:hover {
+  color: #699ce8;
+}
+
+.auth-icon svg {
+  width: 5.17px;
+  height: 9.33px;
+}
+
+.auth-button .auth-desc {
+  font-size: 0.813rem;
+  font-weight: 500;
+}
+
+.auth-desc .highlight {
+  color: #0c8cd4;
+  font-weight: 700;
+}
+
+.lecture-info-wrapper__side-bar {
+  background-color: #f8f9fa;
+  border: 1px solid #f1f3f5;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(33, 37, 41, 0.03);
+}
+
+.info-wrapper-top__side-bar {
+  background-color: white;
+  border-radius: 8px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.price__side-bar {
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #343a40;
+}
+
+.payment-related-button-container {
+  margin-bottom: 0.5rem;
+  padding: 0 1.5rem;
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.payment-related-button-container button {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.47;
+  height: 3rem;
+  padding: 0 1rem;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-related-button-container .coupon {
+  color: #00c471;
+  background-color: white;
+  border: 1px solid #00c471;
+  font-weight: 500;
+}
+
+.payment-related-button-container .register {
+  color: white;
+  background-color: #00c471;
+}
+
+.payment-related-button-container .add-to-cart {
+  color: #495057;
+  border: 1px solid #d5dbe2;
 }
