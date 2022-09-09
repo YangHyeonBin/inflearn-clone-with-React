@@ -6,41 +6,41 @@ import SwipePaginationIndex from './SwipePaginationIndex';
 import SwipePaginationButtons from './SwipePaginationButtons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronDown,
-  faSpaghettiMonsterFlying,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function Swiper() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [slides, setSlides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   const [currentTimerId, setCurrentTimerId] = useState(-1);
 
   const [play, setPlay] = useState(true);
 
   const maxSlide = swiperContents.length - 1;
 
-  const rightArrowClickHandler = (_timer) => {
+  const rightArrowClickHandler = () => {
     setCurrentSlide(prevState => (prevState < maxSlide ? prevState + 1 : 0));
-    clearTimeout(_timer);
+    clearTimeout(currentTimerId);
   };
 
   const leftArrowClickHandler = () => {
     setCurrentSlide(prevState => (prevState > 0 ? prevState - 1 : maxSlide));
+    clearTimeout(currentTimerId);
   };
 
-  // 버튼 클릭 -> 타이머 멈추고 다시 생성?
-  // let timer = setTimeout(rightArrowClickHandler, 5000);
+  const swipePlayHandler = () => {
+    setPlay(!play);
+    clearTimeout(currentTimerId);
+  };
 
   useEffect(() => {
-    let timer = setTimeout(() => rightArrowClickHandler(timer), 5000);
-    console.log(timer);
+    const timer = setTimeout(() => rightArrowClickHandler(), 5000);
     setCurrentTimerId(timer);
 
     !play && clearTimeout(timer);
-  }, [currentSlide , play]);
+  }, [currentSlide, play]);
 
   useEffect(() => {
     const DELAY_TIME = 1000;
@@ -92,10 +92,6 @@ export default function Swiper() {
     ));
   }
 
-  const swipePlayHandler = () => {
-    setPlay(!play);
-  };
-
   return (
     <section className="swiper">
       <h2 className="sr-only">진행 중인 이벤트</h2>
@@ -118,7 +114,6 @@ export default function Swiper() {
                 index={index}
                 currentSlide={currentSlide}
                 paginationButtonClickHandler={() => {
-                  // clearTimeout(timer);
                   clearTimeout(currentTimerId);
                   setCurrentSlide(index);
                 }}
