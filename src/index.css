@@ -817,6 +817,7 @@ main .search {
   flex-direction: row;
   /* width: 200%; */
   /* transform: translate(-50%); */
+  transition: transform 300ms;
 }
 
 .card__more-lectures {

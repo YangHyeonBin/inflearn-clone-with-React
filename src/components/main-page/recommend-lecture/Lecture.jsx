@@ -26,6 +26,7 @@ export default function Lecture({
   discountTagBackground,
   discountTagColor,
   img,
+  gif,
 }) {
   const discountTagStyle = {
     backgroundColor: discountTagBackground,
@@ -35,10 +36,16 @@ export default function Lecture({
   return (
     <li>
       <Link to={`/lecture/${lecture_id}`} className="lecture-item">
-        <img className="lecture-thumbnail" src={img} alt={title} />
+        {img && <img className="lecture-thumbnail" src={img} alt={title} />}
+        {gif && (
+          <video className="lecture-thumbnail" muted loop autoPlay playsInline>
+            <source src={gif} type="video/mp4" />이 비디오를 재생할 수 없는
+            브라우저입니다.
+          </video>
+        )}
         <h3 className="lecture-title">{title}</h3>
         <div className="lecture-author">{author}</div>
-        <Rating rating={rating} />
+        {rating && <Rating rating={rating} />}
         {ratingAmount && (
           <span className="lecture-rating-amount">({ratingAmount})</span>
         )}

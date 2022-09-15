@@ -30,6 +30,7 @@ export default function SimilarRoot() {
               discountTagBackground={lecture.discountTagBackground}
               discountTagColor={lecture.discountTagColor}
               img={lecture.img}
+              gif={lecture.gif}
             />
           ))}
         </ul>

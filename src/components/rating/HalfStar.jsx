@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function EmptyStar() {
+export default function HalfStar() {
   return (
     <svg
       aria-hidden="true"
