@@ -33,6 +33,10 @@ button {
   all: unset;
 }
 
+select {
+  all: unset;
+}
+
 input {
   outline: none;
   border: none;
@@ -1120,7 +1124,7 @@ main .search {
 }
 
 /* Footer */
-footer {
+.footer {
   background-color: #303740;
 }
 
@@ -1724,4 +1728,111 @@ footer {
   to {
     transform: scaleX(-1);
   }
+}
+
+/* notFound 관련 */
+.not-found {
+  display: none;
+}
+
+/* NotFound */
+.wrapper__not-found {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.message__not-found {
+  flex: 1 1 0;
+  margin-left: 3rem;
+}
+
+.message__not-found h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.message__not-found p {
+  font-size: 2rem;
+}
+
+.go-to-main {
+  color: #00c471;
+}
+
+.coding-cat {
+  flex: 1 1 0;
+  display: block;
+  max-width: 50%;
+}
+
+.inflearn-stamp {
+  display: block;
+  width: 6.5rem;
+  height: 6.5rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+/* courses-page */
+/* Courses */
+.courses-page-wrapper {
+  max-width: 73.75rem;
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+/* SideNavBar */
+.side-nav-bar {
+  line-height: 1.25;
+  width: 12.25rem;
+  color: #595959;
+}
+
+.category-title {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid #e4e4e4;
+  background-color: #fafafa;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.category-title.with-arrow::after {
+  content: '';
+  display: inline-block;
+  margin-top: 0.125rem;
+  margin-left: 0.65rem;
+  border: solid #595959;
+  border-width: 0 0.125rem 0.125rem 0;
+  padding: 0.156rem;
+  transform: rotate(-45deg);
+  transition: transform 0.2s;
+}
+
+.category-title.with-arrow.clicked::after {
+  content: '';
+  display: inline-block;
+  margin-top: 0.125rem;
+  margin-left: 0.65rem;
+  border: solid #595959;
+  border-width: 0 0.125rem 0.125rem 0;
+  padding: 0.156rem;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.category-detail {
+  display: block;
+  background-color: white;
+  font-size: 0.925rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid #e4e4e4;
 }

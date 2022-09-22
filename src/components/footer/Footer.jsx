@@ -3,9 +3,9 @@ import FooterNav from './FooterNav';
 import FooterInfo from './FooterInfo';
 import FooterAnchor from './FooterAnchor';
 
-export default function Footer() {
+export default function Footer({ isNotFound }) {
   return (
-    <footer>
+    <footer className={isNotFound ? 'not-found' : 'footer'}>
       <div className="footer__wrapper">
         <FooterNav />
         <div className="footer-bottom__wrapper">

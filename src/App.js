@@ -1,24 +1,30 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 import Inflab from './components/Inflab';
 import Header from './components/Header';
-import MainPage from './components/main-page/MainPage';
+import MainPage from './pages/MainPage';
 import Footer from './components/footer/Footer';
-import LectureDetailPage from './components/lecture-detail-page/LectureDetailPage';
+import LectureDetailPage from './pages/LectureDetailPage';
+import NotFound from './pages/NotFound';
+import Courses from './pages/Courses';
 
 function App() {
+  const [isNotFound, setIsNotFound] = useState(false);
+
   return (
-    <div className="App">
-      <Inflab />
-      <Header />
+    <BrowserRouter>
+      <Inflab isNotFound={isNotFound} />
+      <Header isNotFound={isNotFound} />
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
-        <Route
-          path="/lecture/:lecture_id"
-          element={<LectureDetailPage />}></Route>
+        <Route path="/lecture/:title" element={<LectureDetailPage />}></Route>
+        <Route path="/courses" element={<Courses />} />
+
+        <Route path="/*" element={<NotFound setIsNotFound={setIsNotFound} />} />
       </Routes>
-      <Footer />
-    </div>
+      <Footer isNotFound={isNotFound} />
+    </BrowserRouter>
   );
 }
 

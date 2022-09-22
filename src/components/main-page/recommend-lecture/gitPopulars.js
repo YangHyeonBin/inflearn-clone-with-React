@@ -55,4 +55,13 @@ export const gitPopulars = [
     students: '1500',
     img: 'https://cdn.inflearn.com/public/courses/326543/cover/44369457-39ef-4df3-a948-dffca597bece',
   },
+  {
+    title: '지옥에서 온 Git',
+    author: 'Egoing Lee',
+    rating: '5',
+    ratingAmount: '133',
+    currentPrice: '무료',
+    students: '6200',
+    img: 'https://cdn.inflearn.com/wp-content/uploads/git.jpg',
+  },
 ];

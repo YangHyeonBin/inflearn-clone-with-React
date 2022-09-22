@@ -62,4 +62,13 @@ export const jsPopulars = [
     students: '500',
     img: 'https://cdn.inflearn.com/public/course-324818-cover/bb4320c6-c054-4396-b6c8-38f6ee1e4144',
   },
+  {
+    title: 'Do It! 장고+부트스트랩: 파이썬 웹 개발의 정석',
+    author: 'SungYong Lee',
+    rating: '5',
+    ratingAmount: '28',
+    currentPrice: '132,000',
+    students: '300',
+    img: 'https://cdn.inflearn.com/public/courses/326317/cover/b07dfd4a-a0c8-4fc5-a885-40c5cbb5e325/doitdj.png',
+  },
 ];

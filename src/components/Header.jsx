@@ -1,5 +1,7 @@
 import { ReactComponent as InflearnLogo } from '../assets/inflearn-logo.svg';
 
+import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
@@ -7,16 +9,16 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
-export default function Header() {
+export default function Header({ isNotFound }) {
   const navMenu = ['강의', '로드맵', '멘토링', '커뮤니티', '인프런'];
 
   return (
-    <header className="header-wrapper-shadow">
+    <header className={isNotFound ? 'not-found' : 'header-wrapper-shadow'}>
       <div className="header-wrapper">
-        <a href="#">
+        <Link to="/">
           <InflearnLogo />
           <h1 className="sr-only">인프런</h1>
-        </a>
+        </Link>
         <nav>
           <ul>
             {navMenu.map(item => (

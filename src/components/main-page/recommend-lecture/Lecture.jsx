@@ -33,9 +33,16 @@ export default function Lecture({
     color: discountTagColor,
   };
 
+  const clickHandler = e => {
+    console.log(e.target.alt);
+  };
+
   return (
     <li>
-      <Link to={`/lecture/${lecture_id}`} className="lecture-item">
+      <Link
+        to={`/lecture/${lecture_id}`}
+        className="lecture-item"
+        onClick={clickHandler}>
         {img && <img className="lecture-thumbnail" src={img} alt={title} />}
         {gif && (
           <video className="lecture-thumbnail" muted loop autoPlay playsInline>
@@ -51,7 +58,11 @@ export default function Lecture({
         )}
         <div className="lecture-price-wrapper">
           {originalPrice && <del>\{originalPrice}</del>}
-          <span className="lecture-price">\{currentPrice}</span>
+          {currentPrice === '무료' ? (
+            <span className="lecture-price">{currentPrice}</span>
+          ) : (
+            <span className="lecture-price">\{currentPrice}</span>
+          )}
         </div>
         <div className="lecture-tag-container">
           {students && (
