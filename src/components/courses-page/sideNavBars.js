@@ -3,6 +3,7 @@ export const sideNavBars = [
     title: '전체 강의',
   },
   {
+    index: 1,
     title: '개발 · 프로그래밍',
     children: [
       'ALL',
@@ -25,6 +26,7 @@ export const sideNavBars = [
     ],
   },
   {
+    index: 2,
     title: '보안 · 네트워크',
     children: [
       'ALL',
@@ -37,6 +39,7 @@ export const sideNavBars = [
     ],
   },
   {
+    index: 3,
     title: '데이터 사이언스',
     children: [
       'ALL',
@@ -49,6 +52,7 @@ export const sideNavBars = [
     ],
   },
   {
+    index: 4,
     title: '게임 개발',
     children: [
       'ALL',
@@ -59,6 +63,7 @@ export const sideNavBars = [
     ],
   },
   {
+    index: 5,
     title: '크리에이티브',
     children: [
       'ALL',
@@ -75,6 +80,7 @@ export const sideNavBars = [
     ],
   },
   {
+    index: 6,
     title: '직무 · 마케팅',
     children: [
       'ALL',
@@ -88,14 +94,17 @@ export const sideNavBars = [
     ],
   },
   {
+    index: 7,
     title: '학문 · 외국어',
     children: ['ALL', '수학', '외국어', '기타'],
   },
   {
+    index: 8,
     title: '커리어',
     children: ['ALL', '취업 · 이직', '개인 브랜딩', '창업', '기타'],
   },
   {
+    index: 9,
     title: '교양',
     children: ['ALL', '교양'],
   },

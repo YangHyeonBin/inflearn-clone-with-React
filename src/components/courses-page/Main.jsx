@@ -11,11 +11,12 @@ import { similarRoots } from '../main-page/recommend-lecture/similarRoots';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
-import { ReactComponent as Dot } from '../../assets/dot-icon.svg';
 import { ReactComponent as DownArrow } from '../../assets/down-arrow.svg';
 
 export default function Main() {
   const dummyCourses = jsPopulars.concat(gitPopulars, similarRoots);
+
+  const courseWidth = { width: '13.813rem', margin: 0 };
   const dummyPaginaitonArray = [];
 
   for (let i = 0; i < 86; i++) {
@@ -31,58 +32,37 @@ export default function Main() {
         </header>
         <main>
           <nav>
-            <h2>전체</h2>
+            <h2 className="category-navigation">전체</h2>
           </nav>
-          <div>
+          <div className="tag-container__courses">
             <SkillSearchBar />
             {skillTags.map((tag, index) => (
-              <button type="button" key={tag + index}>
+              <button type="button" key={tag + index} className="skill-tag">
                 {tag}
               </button>
             ))}
-            <button type="button">
+            <button type="button" className="skill-tag more-tag-button">
               <FontAwesomeIcon icon={faEllipsis} />
             </button>
           </div>
-          <div>
-            <button type="button">
-              <div>
-                <Filter />
-                필터
-              </div>
-              <div>
-                유료
-                <Dot />
-                무료
-                <Dot />
-                할인중
-              </div>
-              <div>
-                입문
-                <Dot />
-                초급
-                <Dot />
-                중급이상
-              </div>
-            </button>
-            <button type="button">
+          <div className="filter-container">
+            <Filter />
+            <button type="button" className="select-button">
               <label className="sr-only" htmlFor="courses-ordering-type">
                 정렬 방식 선택
               </label>
-              <select className="courses-ordering-type">
+              <select id="courses-ordering-type">
                 {orderingTypes.map((type, index) => (
                   <option key={type.type + index} value={type.value}>
                     {type.type}
                   </option>
                 ))}
               </select>
-              <span>
-                <DownArrow />
-              </span>
+              <DownArrow />
             </button>
           </div>
           <div>
-            <ul>
+            <ul className="courses-container">
               {dummyCourses.map((lecture, index) => (
                 <Lecture
                   key={lecture.title + index}
@@ -102,19 +82,22 @@ export default function Main() {
                   discountTagColor={lecture.discountTagColor}
                   img={lecture.img}
                   gif={lecture.gif}
+                  smaller={courseWidth}
                 />
               ))}
             </ul>
           </div>
         </main>
-        <footer>
+        <footer className="pagination__courses">
           <nav>
             {dummyPaginaitonArray.map(page => (
-              <button type="button" key={page}>
+              <button type="button" key={page} className="page-button">
                 {page + 1}
               </button>
             ))}
-            <button type="button">다음 페이지</button>
+            <button type="button" className="next-page-button">
+              다음 페이지
+            </button>
           </nav>
         </footer>
       </div>

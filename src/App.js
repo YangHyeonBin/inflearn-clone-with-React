@@ -7,7 +7,8 @@ import MainPage from './pages/MainPage';
 import Footer from './components/footer/Footer';
 import LectureDetailPage from './pages/LectureDetailPage';
 import NotFound from './pages/NotFound';
-import Courses from './pages/Courses';
+import CoursesPage from './pages/CoursesPage';
+import DashBoardPage from './pages/DashBoardPage';
 
 function App() {
   const [isNotFound, setIsNotFound] = useState(false);
@@ -19,7 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/lecture/:title" element={<LectureDetailPage />}></Route>
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/account/dashboard" element={<DashBoardPage />} />
 
         <Route path="/*" element={<NotFound setIsNotFound={setIsNotFound} />} />
       </Routes>

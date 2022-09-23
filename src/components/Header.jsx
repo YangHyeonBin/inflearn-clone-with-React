@@ -1,3 +1,5 @@
+import { navMenus } from './navMenus';
+
 import { ReactComponent as InflearnLogo } from '../assets/inflearn-logo.svg';
 
 import { Link } from 'react-router-dom';
@@ -10,8 +12,6 @@ import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
 export default function Header({ isNotFound }) {
-  const navMenu = ['강의', '로드맵', '멘토링', '커뮤니티', '인프런'];
-
   return (
     <header className={isNotFound ? 'not-found' : 'header-wrapper-shadow'}>
       <div className="header-wrapper">
@@ -21,11 +21,11 @@ export default function Header({ isNotFound }) {
         </Link>
         <nav>
           <ul>
-            {navMenu.map(item => (
-              <li key={item}>
-                <a href="#" className="menu-item">
-                  {item}
-                </a>
+            {navMenus.map((menu, index) => (
+              <li key={menu + index}>
+                <Link to={menu.link} className="menu-item">
+                  {menu.menu}
+                </Link>
               </li>
             ))}
           </ul>
@@ -46,9 +46,12 @@ export default function Header({ isNotFound }) {
             <a href="#" className="anchor__alert" aria-label="알림">
               <FontAwesomeIcon icon={faBell} />
             </a>
-            <a href="#" className="anchor__user-info" aria-label="내 정보">
+            <Link
+              to="/account/dashboard"
+              className="anchor__my-page"
+              aria-label="마이페이지">
               <FontAwesomeIcon icon={faUser} />
-            </a>
+            </Link>
           </div>
         </nav>
       </div>

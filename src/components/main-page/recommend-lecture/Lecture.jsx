@@ -27,6 +27,7 @@ export default function Lecture({
   discountTagColor,
   img,
   gif,
+  smaller,
 }) {
   const discountTagStyle = {
     backgroundColor: discountTagBackground,
@@ -38,10 +39,11 @@ export default function Lecture({
   };
 
   return (
-    <li>
+    <li style={smaller && smaller}>
       <Link
         to={`/lecture/${lecture_id}`}
         className="lecture-item"
+        style={smaller && smaller}
         onClick={clickHandler}>
         {img && <img className="lecture-thumbnail" src={img} alt={title} />}
         {gif && (

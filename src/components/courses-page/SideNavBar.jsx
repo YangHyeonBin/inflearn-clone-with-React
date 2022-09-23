@@ -4,12 +4,7 @@ import { useState } from 'react';
 import { sideNavBars } from './sideNavBars';
 
 export default function SideNavBar() {
-  const [clicked, setClicked] = useState(false);
-
-  const titleClickHandler = () => {
-    setClicked(!clicked);
-    console.log(clicked);
-  };
+  const [clickedTitle, setClickedTitle] = useState(-1);
 
   return (
     <aside className="side-nav-bar">
@@ -19,14 +14,22 @@ export default function SideNavBar() {
           <React.Fragment key={menu.title + index}>
             <div
               className={`category-title ${menu.children ? 'with-arrow' : ''} ${
-                clicked ? 'clicked' : ''
+                index === clickedTitle ? 'clicked' : ''
               }`}
-              onClick={titleClickHandler}>
+              onClick={() =>
+                index === clickedTitle
+                  ? setClickedTitle(-1)
+                  : setClickedTitle(index)
+              }>
               {menu.title}
             </div>
             {menu.children &&
               menu.children.map((child, index) => (
-                <div key={index + Math.random()}>
+                <div
+                  key={index + Math.random()}
+                  className={`category-contents ${
+                    clickedTitle === menu.index ? 'show' : ''
+                  }`}>
                   <a className="category-detail">{child}</a>
                 </div>
               ))}
