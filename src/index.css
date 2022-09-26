@@ -600,27 +600,6 @@ main .search {
 }
 
 /* SimilarRoot */
-.lectures {
-  padding: 1.5rem 0;
-}
-
-.lecture-container-margin {
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 0 0.625rem;
-}
-
-.lecture-container-title {
-  color: #1e1e1e;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.lecture-wrapper {
-  position: relative;
-}
-
 .lecture-list {
   display: flex;
 }
@@ -782,26 +761,6 @@ main .search {
   letter-spacing: normal;
 }
 
-/* JSPopular */
-.category-name {
-  color: #00c471;
-}
-
-.title-anchor-icon {
-  margin-left: 0.5rem;
-}
-
-.lecture-container-title-anchor {
-  display: flex;
-}
-
-.lecture-container-description {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #757575;
-  margin-top: 0.25rem;
-}
-
 /* MoreLectures */
 .title__more-lectures {
   color: #333;
@@ -844,14 +803,6 @@ main .search {
   height: 3.25rem;
   margin-bottom: 0.25rem;
   background: url(https://cdn.inflearn.com/public/main/category/icons_sprites.png);
-}
-
-/* New */
-.lecture-title-tag {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #fa4c3d;
-  letter-spacing: normal;
 }
 
 /* Article */

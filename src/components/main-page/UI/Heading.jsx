@@ -1,36 +1,48 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import HeadingDescription from './HeadingDescription';
-import HeadingArrow from './HeadingArrow';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import HeadingTitle from './HeadingTitle';
 
 export default function Heading({ heading }) {
-  if (heading.description) {
-    return (
-      <div className="lecture-container-title">
-        <a className="lecture-container-title-anchor">
-          <HeadingDescription heading={heading} />
-          <span className="title-anchor-icon" aria-hidden="true">
-            <FontAwesomeIcon icon={faChevronRight} />
-          </span>
-        </a>
-        <p className="lecture-container-description">{heading.description}</p>
-      </div>
-    );
-  } else if (heading.hasArrow) {
-    return (
-      <div className="lecture-container-title">
-        <a className="lecture-container-title-anchor">
-          <HeadingArrow heading={heading} />
-          <span className="title-anchor-icon" aria-hidden="true">
-            <FontAwesomeIcon icon={faChevronRight} />
-          </span>
-        </a>
-      </div>
-    );
-  } else {
-    return <h2 className="lecture-container-title">{heading.title}</h2>;
-  }
+  return (
+    <Wrapper>
+      <HeadingTitle heading={heading} />
+      {heading.description && (
+        <p className="description">{heading.description}</p>
+      )}
+    </Wrapper>
+  );
 }
+
+const Wrapper = styled.div`
+  color: #1e1e1e;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+
+  .title-anchor {
+    display: flex;
+  }
+
+  .title-anchor-icon {
+    margin-left: 0.5rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #757575;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fa4c3d;
+    letter-spacing: normal;
+  }
+
+  .category-name {
+    color: #00c471;
+  }
+`;

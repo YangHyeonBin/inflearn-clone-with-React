@@ -8,9 +8,8 @@ import MenuBar from '../components/lecture-detail-page/MenuBar';
 import Content from '../components/lecture-detail-page/Content';
 
 export default function LectureDetailPage() {
-  const params = useParams();
-  // console.log(params);
   const { title } = useParams(); // 비구조화 할당 이용, useParams 훅이 반환하는 객체 속 title이란 key를 가진 값을 꺼냄
+  console.log(title);
 
   const currentLecture = jsPopulars[2];
   return (
