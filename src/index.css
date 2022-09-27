@@ -1196,7 +1196,8 @@ main .search {
   display: flex;
 }
 
-.thumbnail-container__detail-header img {
+.thumbnail-container__detail-header img,
+.thumbnail-container__detail-header video {
   display: block;
   width: 27.5rem;
   height: 17.875rem;

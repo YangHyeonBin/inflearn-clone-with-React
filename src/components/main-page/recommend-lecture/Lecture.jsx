@@ -11,7 +11,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faPercent, faTicket);
 
 export default function Lecture({
-  lecture_id,
   title,
   author,
   rating,
@@ -34,17 +33,12 @@ export default function Lecture({
     color: discountTagColor,
   };
 
-  const clickHandler = e => {
-    console.log(e.target.alt);
-  };
-
   return (
     <li style={smaller && smaller}>
       <Link
-        to={`/lecture/${lecture_id}`}
+        to={`/lecture/${title}`}
         className="lecture-item"
-        style={smaller && smaller}
-        onClick={clickHandler}>
+        style={smaller && smaller}>
         {img && <img className="lecture-thumbnail" src={img} alt={title} />}
         {gif && (
           <video className="lecture-thumbnail" muted loop autoPlay playsInline>

@@ -13,7 +13,13 @@ export default function DetailHeader({ lecture }) {
       <div className="detail-header-wrapper">
         <div className="thumbnail-container__detail-header">
           <div className="thumbnail-content__detail-header">
-            <img src={lecture.img} alt={lecture.title} />
+            {lecture.img && <img src={lecture.img} alt={lecture.title} />}
+            {lecture.gif && (
+              <video muted loop autoPlay playsInline>
+                <source src={lecture.gif} type="video/mp4" />이 비디오를 재생할
+                수 없는 브라우저입니다.
+              </video>
+            )}
             <div className="free-watch-button">
               <button type="button">
                 <PlayIcon />
@@ -55,11 +61,12 @@ export default function DetailHeader({ lecture }) {
             <span className="hash-tag-icon">
               <HashTag />
             </span>
-            {lecture.hashTag.map(tag => (
-              <a className="hash-tag" key={tag}>
-                {tag}
-              </a>
-            ))}
+            {lecture.hashTag &&
+              lecture.hashTag.map(tag => (
+                <a className="hash-tag" key={tag}>
+                  {tag}
+                </a>
+              ))}
           </div>
         </div>
       </div>
