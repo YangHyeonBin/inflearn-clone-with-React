@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
+import MobileNavBar from './components/MobileNavBar';
 import Inflab from './components/Inflab';
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
@@ -15,6 +17,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <MobileNavWrapper hidden={isNotFound}>
+        <MobileNavBar />
+      </MobileNavWrapper>
       <Inflab isNotFound={isNotFound} />
       <Header isNotFound={isNotFound} />
       <Routes>
@@ -31,3 +36,11 @@ function App() {
 }
 
 export default App;
+
+const MobileNavWrapper = styled.div`
+  display: none;
+
+  @media screen and (max-width: 1024px) {
+    display: ${props => (props.hidden ? 'none' : 'block')};
+  }
+`;

@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import Swiper from '../components/main-page/swipe/Swiper';
 import Search from '../components/main-page/search/Search';
 import RecentLecture from '../components/main-page/recent-lecture/RecentLecture';
@@ -14,7 +16,7 @@ import Apply from '../components/main-page/Apply';
 
 export default function MainPage() {
   return (
-    <main>
+    <MainWrapper>
       <Swiper />
       <Search />
       <RecentLecture />
@@ -27,6 +29,10 @@ export default function MainPage() {
       <Roadmap />
       <Banner />
       <Apply />
-    </main>
+    </MainWrapper>
   );
 }
+
+const MainWrapper = styled.main`
+  overflow-y: hidden;
+`;

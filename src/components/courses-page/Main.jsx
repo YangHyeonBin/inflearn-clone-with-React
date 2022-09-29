@@ -12,6 +12,9 @@ import { similarRoots } from '../main-page/recommend-lecture/similarRoots';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as DownArrow } from '../../assets/down-arrow.svg';
+import Pagination from './Pagination';
+
+const MAX_PAGE = 10;
 
 export default function Main() {
   const dummyCourses = jsPopulars.concat(gitPopulars, similarRoots);
@@ -19,7 +22,7 @@ export default function Main() {
   const courseWidth = { width: '13.813rem', margin: 0 };
   const dummyPaginaitonArray = [];
 
-  for (let i = 0; i < 86; i++) {
+  for (let i = 1; i < 88; i++) {
     dummyPaginaitonArray.push(i);
   }
 
@@ -88,18 +91,7 @@ export default function Main() {
             </ul>
           </div>
         </main>
-        <footer className="pagination__courses">
-          <nav>
-            {dummyPaginaitonArray.map(page => (
-              <button type="button" key={page} className="page-button">
-                {page + 1}
-              </button>
-            ))}
-            <button type="button" className="next-page-button">
-              다음 페이지
-            </button>
-          </nav>
-        </footer>
+        <Pagination pages={dummyPaginaitonArray} maxPage={MAX_PAGE} />
       </div>
     </section>
   );
