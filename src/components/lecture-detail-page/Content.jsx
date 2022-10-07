@@ -1,5 +1,5 @@
 import React from 'react';
-import LectureInfo from './LectureInfo';
+import LectureInfo from './lecture-info/LectureInfo';
 import LectureSideBar from './LectureSideBar';
 
 export default function Content({ lecture }) {

@@ -39,6 +39,7 @@ export const jsPopulars = [
     totalRunningTime: '8시간 7분',
     term: '무제한',
     certificate: '발급',
+    difficulty: 2,
     img: 'https://cdn.inflearn.com/wp-content/uploads/es6_8.jpg',
   },
   {

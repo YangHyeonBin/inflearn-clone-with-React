@@ -53,6 +53,7 @@ const MobileNavBarWrapper = styled.nav`
   width: 100vw;
   box-shadow: 0 -2px 4px 0 rgb(33 37 41 / 8%);
   background-color: white;
+  color: #495057;
   position: fixed;
   bottom: 0;
   left: 0;

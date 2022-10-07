@@ -1065,17 +1065,17 @@ main .search {
 }
 
 /* LectureInfo */
-.lecture-info-wrapper {
+/* .lecture-info-wrapper {
   padding: 0 0.5rem;
   flex: 2 1 0;
-}
+} */
 
-.lecture-info {
-  /* max-width: 45rem;
+/* .lecture-info { */
+/* max-width: 45rem;
   width: 100%; */
-  width: 45rem;
+/* width: 45rem;
   padding: 1.75rem 1rem 0 2.125rem;
-}
+} */
 
 /* LectureSideBar */
 .lecture-side-bar-wrapper {
@@ -1187,28 +1187,28 @@ main .search {
   box-shadow: 0 1px 3px 0 rgba(33, 37, 41, 0.03);
 }
 
-.info-wrapper-top__side-bar {
+/* .info-wrapper-top__side-bar {
   background-color: white;
   border-radius: 8px;
   border-bottom: 1px solid #f1f3f5;
-}
+} */
 
-.price__side-bar {
+/* .price__side-bar {
   margin-bottom: 1.25rem;
   padding: 1.25rem 1.5rem 0;
   font-size: 1.5rem;
   font-weight: 700;
   color: #343a40;
-}
+} */
 
-.payment-related-button-container {
+/* .payment-related-button-container {
   margin-bottom: 0.5rem;
   padding: 0 1.5rem;
   display: grid;
   row-gap: 0.5rem;
-}
+} */
 
-.payment-related-button-container button {
+/* .payment-related-button-container button {
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.47;
@@ -1217,9 +1217,9 @@ main .search {
   text-align: center;
   border-radius: 4px;
   cursor: pointer;
-}
+} */
 
-.payment-related-button-container .coupon {
+/* .payment-related-button-container .coupon {
   color: #00c471;
   background-color: white;
   border: 1px solid #00c471;
@@ -1234,7 +1234,7 @@ main .search {
 .payment-related-button-container .add-to-cart {
   color: #495057;
   border: 1px solid #d5dbe2;
-}
+} */
 
 /* ResultList */
 .search-active .search-result-container {

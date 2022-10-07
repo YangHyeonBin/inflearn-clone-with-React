@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 export default function ResultItem({
   title,
   author,
@@ -28,7 +30,7 @@ export default function ResultItem({
   const exactKeyword = title.split(' ')[keywordIndex];
   return (
     <li>
-      <a className="lecture__search-result">
+      <Link to={`/lecture/${title}`} className="lecture__search-result">
         <img src={img} alt={title} />
         <div className="info-wrapper__search-result">
           <em className="lecture-title__search-result">
@@ -50,7 +52,7 @@ export default function ResultItem({
           </em>
           <p className="author__search-result">{author}</p>
         </div>
-      </a>
+      </Link>
     </li>
   );
 }

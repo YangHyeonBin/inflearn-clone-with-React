@@ -65,6 +65,7 @@ export default function Header({ isNotFound }) {
   );
 }
 
+// 큰 화면을 기준으로 작성, 미디어 쿼리로 작은 화면들에 수정해야 할 스타일 추가
 const HeaderWrapper = styled.header`
   display: ${props => (props.hidden ? 'none' : 'block')};
   box-shadow: 0 2px 4px 0 hsl(0deg 0% 81% / 50%);
@@ -148,13 +149,13 @@ const HeaderWrapper = styled.header`
   }
 
   #recent-lecture-icon {
-    margin-right: 0.25rem;
+    margin-right: 0.25em;
   }
 
   .cart-icon,
   .alert-icon {
     font-size: 1.25rem;
-    padding: 0 0.625rem;
+    padding: 0 0.5em;
   }
 
   .cart-icon:hover,
@@ -164,13 +165,14 @@ const HeaderWrapper = styled.header`
 
   .my-page {
     font-size: 1.25rem;
-    padding-left: 0.625rem;
+    padding-left: 0.5em;
   }
 
-  @media screen and (max-width: 1024px) {
+  /* 1024px 이하 */
+  @media screen and (max-width: 64em) {
     .header-wrapper {
       height: 3.125em;
-      padding: 0 1em;
+      padding: 0 1.5em;
     }
 
     .side-bar-button {
@@ -195,7 +197,14 @@ const HeaderWrapper = styled.header`
     }
 
     .my-page {
-      margin-left: 0.625rem;
+      margin-left: 0.625em;
+    }
+  }
+
+  /* 768px 이하 */
+  @media screen and (max-width: 48em) {
+    .header-wrapper {
+      padding: 0 1em;
     }
   }
 `;

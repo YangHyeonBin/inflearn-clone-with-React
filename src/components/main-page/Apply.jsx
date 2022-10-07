@@ -84,15 +84,18 @@ const ApplyHeading = styled.header`
 
 const ApplyItemContainer = styled.div`
   min-width: 100%;
+  /* overflow-x: hidden; */
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
   ul {
     display: flex;
     justify-content: space-between;
+    /* width: 100vw; */
   }
 
   .apply-item {
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     width: 23.75em;
