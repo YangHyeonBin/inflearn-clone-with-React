@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as InflearnLogo } from '../../assets/inflearn-logo.svg';
+import { ReactComponent as InflearnLogo } from '../../assets/icons/inflearn-logo.svg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';

@@ -8,6 +8,7 @@ export const jsPopulars = [
     currentPrice: '143,000',
     students: '2100',
     hashTag: ['JavaScript', 'React', 'Node.js', 'Express', 'ReactNative'],
+    likes: '1785',
     img: 'https://cdn.inflearn.com/public/courses/326174/cover/b0536120-7de3-4aa8-8266-97cf3881e87d',
   },
   {
@@ -19,6 +20,7 @@ export const jsPopulars = [
     currentPrice: '110,000',
     students: '2800',
     hashTag: ['JavaScript', 'Vue.js', 'Vuex'],
+    likes: '6845',
     img: 'https://cdn.inflearn.com/public/courses/324683/course_cover/d744a88a-ad26-4d8b-9653-24920714b24b/lv4.png',
   },
   {

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as InflearnIcon } from '../assets/inflearn-icon.svg';
-import { ReactComponent as RecruitIcon } from '../assets/recruit-icon.svg';
+import { ReactComponent as InflearnIcon } from '../assets/icons/inflearn-icon.svg';
+import { ReactComponent as RecruitIcon } from '../assets/icons/recruit-icon.svg';
 
 export default function Inflab({ isNotFound }) {
   return (

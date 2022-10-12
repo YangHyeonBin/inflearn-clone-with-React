@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
+import styled from 'styled-components';
+
 export default function Pagination({ pages, maxPage }) {
   const [firstPage, setFirstPage] = useState(0);
   const [lastPage, setLastPage] = useState(maxPage);
@@ -57,7 +59,7 @@ export default function Pagination({ pages, maxPage }) {
   };
 
   return (
-    <footer className="pagination__courses">
+    <PaginationWrapper>
       <nav>
         {currentPage > 1 && (
           <button
@@ -119,6 +121,48 @@ export default function Pagination({ pages, maxPage }) {
           </button>
         )}
       </nav>
-    </footer>
+    </PaginationWrapper>
   );
 }
+
+const PaginationWrapper = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #363636;
+
+  .page-button {
+    border: 1px solid #b5b5b5;
+    margin: 0.25rem;
+    padding: 0.219rem 0.375rem;
+    border-radius: 4px;
+    width: 0.813rem;
+    height: 1.125rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .page-button:hover {
+    border-color: #808080;
+  }
+
+  .page-button.active {
+    background-color: #1dc078;
+    color: white;
+    border-color: #1dc078;
+  }
+
+  .next-page-button {
+    border: 1px solid #dbdbdb;
+    margin: 0.25rem;
+    padding: 0.219rem 0.563rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .next-page-button:hover {
+    border-color: #b5b5b5;
+  }
+`;

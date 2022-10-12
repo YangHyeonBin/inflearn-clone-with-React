@@ -1,7 +1,7 @@
 import React from 'react';
 import { userInfo } from './userInfo';
 
-import { ReactComponent as CertificateIcon } from '../../assets/certificate-icon.svg';
+import { ReactComponent as CertificateIcon } from '../../assets/icons/certificate-icon.svg';
 
 export default function DashBoardMain() {
   const progress = (

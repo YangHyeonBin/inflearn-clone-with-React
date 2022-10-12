@@ -26,7 +26,7 @@ export default function Lecture({
   discountTagColor,
   img,
   gif,
-  smaller,
+  // smaller,
 }) {
   const discountTagStyle = {
     backgroundColor: discountTagBackground,
@@ -34,11 +34,10 @@ export default function Lecture({
   };
 
   return (
-    <li style={smaller && smaller}>
-      <Link
-        to={`/lecture/${title}`}
-        className="lecture-item"
-        style={smaller && smaller}>
+    <li>
+      {/* style={smaller && smaller} */}
+      <Link to={`/lecture/${title}`} className="lecture-item">
+        {/* style={smaller && smaller} */}
         {img && <img className="lecture-thumbnail" src={img} alt={title} />}
         {gif && (
           <video className="lecture-thumbnail" muted loop autoPlay playsInline>

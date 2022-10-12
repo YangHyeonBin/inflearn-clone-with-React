@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as Dot } from '../../assets/dot-icon.svg';
-import { ReactComponent as FilterIcon } from '../../assets/filter-icon.svg';
+import { ReactComponent as Dot } from '../../assets/icons/dot-icon.svg';
+import { ReactComponent as FilterIcon } from '../../assets/icons/filter-icon.svg';
 
 export default function Filter() {
   return (

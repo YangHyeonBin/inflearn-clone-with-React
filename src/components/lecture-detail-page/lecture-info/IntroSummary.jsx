@@ -8,7 +8,7 @@ export default function IntroSummary() {
   return (
     <Summary>
       <h4>
-        <strong>{intro.for}</strong>를 위해 준비한
+        <strong className="for-who">{intro.for}</strong>를 위해 준비한
         <br />
         <strong>
           [<span>{intro.category}</span>]강의입니다.
@@ -50,8 +50,10 @@ const Summary = styled.div`
     color: #343a40;
   }
 
-  strong {
+  .for-who {
     font-weight: 700;
+    margin: 0;
+    display: inline;
   }
 
   .description {

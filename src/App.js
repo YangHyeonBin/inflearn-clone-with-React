@@ -10,7 +10,8 @@ import Footer from './components/footer/Footer';
 import LectureDetailPage from './pages/LectureDetailPage';
 import NotFound from './pages/NotFound';
 import CoursesPage from './pages/CoursesPage';
-import DashBoardPage from './pages/DashBoardPage';
+import DashBoardPage from './pages/my-pages/DashBoardPage';
+import LikePage from './pages/my-pages/LikePage';
 
 function App() {
   const [isNotFound, setIsNotFound] = useState(false);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/lecture/:title" element={<LectureDetailPage />}></Route>
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/account/dashboard" element={<DashBoardPage />} />
+        <Route path="/likes" element={<LikePage />} />
 
         <Route path="/*" element={<NotFound setIsNotFound={setIsNotFound} />} />
       </Routes>

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { navMenus } from './navMenus';
 
-import { ReactComponent as InflearnLogo } from '../assets/inflearn-logo.svg';
-import { ReactComponent as SideBarIcon } from '../assets/side-bar-icon.svg';
-
-import { Link } from 'react-router-dom';
+import { ReactComponent as InflearnLogo } from '../assets/icons/inflearn-logo.svg';
+import { ReactComponent as SideBarIcon } from '../assets/icons/side-bar-icon.svg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -13,8 +12,11 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { useState } from 'react';
 
 export default function Header({ isNotFound }) {
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <HeaderWrapper hidden={isNotFound}>
       <div className="header-wrapper">
@@ -46,18 +48,56 @@ export default function Header({ isNotFound }) {
               <FontAwesomeIcon icon={faPen} id="recent-lecture-icon" />
               최근강의
             </a>
-            <a href="#" className="cart-icon" aria-label="강의 장바구니">
-              <FontAwesomeIcon icon={faCartShopping} />
-            </a>
-            <a href="#" className="alert-icon" aria-label="알림">
-              <FontAwesomeIcon icon={faBell} />
-            </a>
-            <Link
-              to="/account/dashboard"
-              className="my-page"
-              aria-label="마이페이지">
-              <FontAwesomeIcon icon={faUser} />
-            </Link>
+            <div className="cart-wrapper">
+              <a
+                href="#"
+                className={`cart-icon ${isHovering ? 'active' : ''}`}
+                aria-label="강의 장바구니"
+                onMouseOver={() => setIsHovering(true)}
+                onMouseOut={() => setIsHovering(false)}>
+                <FontAwesomeIcon icon={faCartShopping} />
+              </a>
+              {isHovering && (
+                <div
+                  className="cart-modal"
+                  onMouseOver={() => setIsHovering(true)}
+                  onMouseOut={() => {
+                    setIsHovering(false);
+                  }}>
+                  <header>
+                    <div className="carted-amount">
+                      수강바구니<span>0</span>
+                    </div>
+                    <div className="total-price">
+                      총 결제금액
+                      <strong>0</strong>원
+                    </div>
+                  </header>
+                  <main>
+                    <p className="placeholder-header">담긴 강의가 없습니다.</p>
+                    <p className="placeholder-description">
+                      나를 성장시켜줄 좋은 지식들을 찾아보세요.
+                    </p>
+                    <Link to="/courses" className="browse-lectures">
+                      강의리스트 보기
+                    </Link>
+                  </main>
+                </div>
+              )}
+            </div>
+            <div className="alert-wrapper">
+              <a href="#" className="alert-icon" aria-label="알림">
+                <FontAwesomeIcon icon={faBell} />
+              </a>
+            </div>
+            <div className="my-page-wrapper">
+              <Link
+                to="/account/dashboard"
+                className="my-page"
+                aria-label="마이페이지">
+                <FontAwesomeIcon icon={faUser} />
+              </Link>
+            </div>
           </div>
         </nav>
       </div>
@@ -90,6 +130,7 @@ const HeaderWrapper = styled.header`
     flex: 1 1 0;
     display: flex;
     justify-content: space-between;
+    height: 100%;
   }
 
   nav ul {
@@ -152,15 +193,113 @@ const HeaderWrapper = styled.header`
     margin-right: 0.25em;
   }
 
+  .cart-wrapper,
+  .alert-wrapper,
+  .my-page-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.5em 0;
+  }
+
   .cart-icon,
   .alert-icon {
     font-size: 1.25rem;
     padding: 0 0.5em;
   }
 
-  .cart-icon:hover,
+  .cart-icon.active,
   .alert-icon:hover {
     color: #00c471;
+  }
+
+  .cart-modal {
+    position: absolute;
+    top: 4em;
+    right: -0.938em;
+    width: 27.625em;
+    max-height: 26.25em;
+    border: 1px solid #e9ebee;
+    border-radius: 0.5em;
+    box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 1.25em;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1em;
+      font-weight: 700;
+      border-bottom: 1px solid #e9ebee;
+    }
+
+    .carted-amount {
+      color: #1b1c1d;
+
+      span {
+        color: #00c471;
+        padding-left: 0.25em;
+        font-weight: 500;
+      }
+    }
+
+    .total-price {
+      color: #abb0b5;
+      font-weight: 400;
+      font-size: 0.938rem;
+
+      strong {
+        color: #1b1c1d;
+        font-size: 16px;
+        font-weight: 700;
+        padding-left: 0.5em;
+      }
+    }
+
+    main {
+      padding: 2.5em 0 1.25em;
+      text-align: center;
+
+      .placeholder-header {
+        color: #3e4042;
+        font-weight: 700;
+        padding-bottom: 0.25em;
+      }
+
+      .placeholder-description {
+        color: #858a8d;
+        font-size: 0.875rem;
+        padding-bottom: 1.429em;
+      }
+
+      .browse-lectures {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.875rem;
+        font-weight: 700;
+        border: 1px solid #00c471;
+        border-radius: 0.286em;
+        color: #00c471;
+        cursor: pointer;
+        padding: 0 0.857em;
+        height: 40px;
+      }
+    }
+  }
+
+  .cart-modal::after {
+    content: '';
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    top: -15px;
+    right: 21px;
+    transform: rotate(45deg);
+    border: 1px solid #e0e0e0;
+    border-right: none;
+    border-bottom: none;
+    background-color: white;
   }
 
   .my-page {

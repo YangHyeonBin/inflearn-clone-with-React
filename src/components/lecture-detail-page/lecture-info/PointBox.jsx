@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as CheckIcon } from '../../../assets/check-icon.svg';
+import { ReactComponent as CheckIcon } from '../../../assets/icons/check-icon.svg';
 
 export default function PointBox({ children, pointList }) {
   return (

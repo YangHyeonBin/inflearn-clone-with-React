@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ReactComponent as Arrow } from '../../assets/right-arrow.svg';
-import { ReactComponent as AuthorIcon } from '../../assets/person-icon.svg';
-import { ReactComponent as Crown } from '../../assets/crown-icon.svg';
-import { ReactComponent as HashTag } from '../../assets/hash-tag-icon.svg';
-import { ReactComponent as PlayIcon } from '../../assets/play-icon.svg';
+import { ReactComponent as Arrow } from '../../assets/icons/right-arrow.svg';
+import { ReactComponent as AuthorIcon } from '../../assets/icons/person-icon.svg';
+import { ReactComponent as Crown } from '../../assets/icons/crown-icon.svg';
+import { ReactComponent as HashTag } from '../../assets/icons/hash-tag-icon.svg';
+import { ReactComponent as PlayIcon } from '../../assets/icons/play-icon.svg';
 import Rating from '../rating/Rating';
 
 export default function DetailHeader({ lecture }) {

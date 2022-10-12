@@ -1,12 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useState } from 'react';
 
-import { ReactComponent as ArrowIcon } from '../../assets/auth-right-arrow.svg';
-import { ReactComponent as FolderIcon } from '../../assets/folder-icon.svg';
-import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
-import { ReactComponent as ShareIcon } from '../../assets/share-icon.svg';
+import { useRecoilState } from 'recoil';
+import { likeListState } from '../../recoil/LectureLike';
+import { lectureLikeAmountState } from '../../recoil/LectureLikeAmount';
+
+import { allLectures } from '../../assets/dummy-datas/allLectures';
+
+import { ReactComponent as ArrowIcon } from '../../assets/icons/auth-right-arrow.svg';
+import { ReactComponent as FolderIcon } from '../../assets/icons/folder-icon.svg';
+import { ReactComponent as EmptyHeart } from '../../assets/icons/empty-heart.svg';
+import { ReactComponent as FilledHeart } from '../../assets/icons/filled-heart.svg';
+import { ReactComponent as ShareIcon } from '../../assets/icons/share-icon.svg';
 
 export default function LectureSideBar({ lecture }) {
+  const [likeList, setLikeList] = useRecoilState(likeListState);
+  const [likeAmount, setLikeAmount] = useRecoilState(lectureLikeAmountState);
+
+  const currentLectureIndex = allLectures.indexOf(lecture);
+
+  const likeClickHandler = () => {
+    if (likeList.includes(lecture)) {
+      setLikeList(likeList.filter(item => item.title !== lecture.title));
+      const amount1 = likeAmount.slice(0, currentLectureIndex);
+      const amount2 = likeAmount.slice(currentLectureIndex + 1);
+      const modifiedAmount = Number(likeAmount[currentLectureIndex]) - 1;
+      setLikeAmount([...amount1, `${modifiedAmount}`, ...amount2]);
+    } else {
+      setLikeList([...likeList, lecture]);
+      const amount1 = likeAmount.slice(0, currentLectureIndex);
+      const amount2 = likeAmount.slice(currentLectureIndex + 1);
+      const modifiedAmount = Number(likeAmount[currentLectureIndex]) + 1;
+      setLikeAmount([...amount1, `${modifiedAmount}`, ...amount2]);
+    }
+  };
+
   return (
     <div className="lecture-side-bar-wrapper">
       <aside className="lecture-side-bar">
@@ -51,9 +80,19 @@ export default function LectureSideBar({ lecture }) {
                   <FolderIcon className="icon" />
                   폴더에 추가
                 </button>
-                <button type="button">
-                  <HeartIcon className="icon" />
-                  {lecture.likes}
+                <button type="button" onClick={likeClickHandler}>
+                  {likeList.includes(lecture) ? (
+                    <FilledHeart
+                      className="icon"
+                      aria-label="좋아요 목록에서 삭제"
+                    />
+                  ) : (
+                    <EmptyHeart
+                      className="icon"
+                      aria-label="좋아요 목록에 추가"
+                    />
+                  )}
+                  {likeAmount[currentLectureIndex]}
                 </button>
                 <button type="button">
                   <ShareIcon className="icon" />
