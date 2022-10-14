@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
 import { likeListState } from '../../recoil/LectureLike';
 import { lectureLikeAmountState } from '../../recoil/LectureLikeAmount';
+import { cartState } from '../../recoil/Cart';
 
 import { allLectures } from '../../assets/dummy-datas/allLectures';
 
@@ -17,6 +18,7 @@ import { ReactComponent as ShareIcon } from '../../assets/icons/share-icon.svg';
 export default function LectureSideBar({ lecture }) {
   const [likeList, setLikeList] = useRecoilState(likeListState);
   const [likeAmount, setLikeAmount] = useRecoilState(lectureLikeAmountState);
+  const [cart, setCart] = useRecoilState(cartState);
 
   const currentLectureIndex = allLectures.indexOf(lecture);
 
@@ -36,9 +38,13 @@ export default function LectureSideBar({ lecture }) {
     }
   };
 
+  const addToCartHandler = () => {
+    setCart([allLectures[currentLectureIndex], ...cart]);
+  };
+
   return (
-    <div className="lecture-side-bar-wrapper">
-      <aside className="lecture-side-bar">
+    <SideBar>
+      <aside className="side-bar">
         <div className="auth-button-wrapper">
           <button className="auth-button">
             <img
@@ -60,7 +66,7 @@ export default function LectureSideBar({ lecture }) {
             </div>
           </button>
         </div>
-        <div className="lecture-info-wrapper__side-bar">
+        <div className="lecture-info-wrapper">
           <TopWrapper>
             <div className="price">{lecture.currentPrice}원</div>
             <div>
@@ -68,12 +74,23 @@ export default function LectureSideBar({ lecture }) {
                 <button className="coupon" type="button">
                   10% 쿠폰 받기 (3개)
                 </button>
-                <button className="register" type="button">
-                  수강신청 하기
-                </button>
-                <button className="add-to-cart" type="button">
-                  바구니에 담기
-                </button>
+                {cart.includes(lecture) ? (
+                  <CartLink to="/carts" className="register">
+                    수강 바구니로 이동
+                  </CartLink>
+                ) : (
+                  <>
+                    <button className="register" type="button">
+                      수강신청 하기
+                    </button>
+                    <button
+                      className="add-to-cart"
+                      type="button"
+                      onClick={addToCartHandler}>
+                      바구니에 담기
+                    </button>
+                  </>
+                )}
               </PaymentContainer>
               <SubButtons>
                 <button type="button">
@@ -135,9 +152,126 @@ export default function LectureSideBar({ lecture }) {
           </DownWrapper>
         </div>
       </aside>
-    </div>
+    </SideBar>
   );
 }
+
+const SideBar = styled.div`
+  padding: 0 0.5rem;
+  flex: 1 1 0;
+  letter-spacing: -0.3px;
+  line-height: 1.43;
+
+  .side-bar {
+    margin: 1.75rem 2.125rem 1.25rem auto;
+    position: sticky;
+    top: 75px;
+    width: 20.938rem;
+  }
+
+  .auth-button-wrapper {
+    display: flex;
+    margin: 1.25rem 0 1rem;
+  }
+
+  .auth-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.688rem 0.625rem 0.688rem 1rem;
+    border: 1px solid rgba(20, 150, 223, 0.25);
+    border-radius: 8px;
+    background-color: #e8f5ff;
+    color: #3e4042;
+    cursor: pointer;
+  }
+
+  .auth-button:hover {
+    background-color: #fafdff;
+    border-color: #699ce8;
+  }
+
+  .auth-button:hover .auth-icon {
+    color: #699ce8;
+  }
+
+  .auth-button:hover path {
+    fill: #699ce8;
+  }
+
+  .auth-button img {
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    margin-right: 0.625rem;
+    border: 1px solid white;
+    border-radius: 50%;
+  }
+
+  .auth-info {
+    flex: 1 1 auto;
+  }
+
+  .auth-button .title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+
+  .auth-button h3 {
+    font-weight: 700;
+    position: relative;
+  }
+
+  .auth-button h3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(20, 150, 223, 0.16);
+  }
+
+  .auth-icon {
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+
+  .auth-icon span {
+    text-decoration: underline;
+    text-underline-position: under;
+    margin-right: 5.67px;
+  }
+
+  .auth-icon:hover {
+    color: #699ce8;
+  }
+
+  .auth-icon svg {
+    width: 5.17px;
+    height: 9.33px;
+  }
+
+  .auth-button .auth-desc {
+    font-size: 0.813rem;
+    font-weight: 500;
+  }
+
+  .auth-desc .highlight {
+    color: #0c8cd4;
+    font-weight: 700;
+  }
+
+  .lecture-info-wrapper {
+    background-color: #f8f9fa;
+    border: 1px solid #f1f3f5;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 0 rgba(33, 37, 41, 0.03);
+  }
+`;
 
 const TopWrapper = styled.div`
   background-color: white;
@@ -186,6 +320,20 @@ const PaymentContainer = styled.div`
     color: #495057;
     border: 1px solid #d5dbe2;
   }
+`;
+
+const CartLink = styled(Link)`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.47;
+  height: 3rem;
+  padding: 0 1rem;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 const SubButtons = styled.div`

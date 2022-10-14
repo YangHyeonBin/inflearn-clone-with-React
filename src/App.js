@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import MobileNavBar from './components/MobileNavBar';
 import Inflab from './components/Inflab';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import MainPage from './pages/MainPage';
 import Footer from './components/footer/Footer';
 import LectureDetailPage from './pages/LectureDetailPage';
@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 import CoursesPage from './pages/CoursesPage';
 import DashBoardPage from './pages/my-pages/DashBoardPage';
 import LikePage from './pages/my-pages/LikePage';
+import CartPage from './pages/my-pages/CartPage';
 
 function App() {
   const [isNotFound, setIsNotFound] = useState(false);
@@ -29,6 +30,7 @@ function App() {
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/account/dashboard" element={<DashBoardPage />} />
         <Route path="/likes" element={<LikePage />} />
+        <Route path="/carts" element={<CartPage />} />
 
         <Route path="/*" element={<NotFound setIsNotFound={setIsNotFound} />} />
       </Routes>

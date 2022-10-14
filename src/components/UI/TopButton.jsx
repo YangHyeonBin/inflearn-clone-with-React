@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export default function TopButton() {
   const [showButton, setShowButton] = useState(false);
+  // const [attachButton, setAttachButton] = useState(false);
 
   useEffect(() => {
     const handleShowButton = () => {
