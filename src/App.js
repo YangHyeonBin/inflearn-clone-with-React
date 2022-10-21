@@ -13,6 +13,7 @@ import CoursesPage from './pages/CoursesPage';
 import DashBoardPage from './pages/my-pages/DashBoardPage';
 import LikePage from './pages/my-pages/LikePage';
 import CartPage from './pages/my-pages/CartPage';
+import NaverLoginPage from './pages/NaverLoginPage';
 
 function App() {
   const [isNotFound, setIsNotFound] = useState(false);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/account/dashboard" element={<DashBoardPage />} />
         <Route path="/likes" element={<LikePage />} />
         <Route path="/carts" element={<CartPage />} />
+        {/* <Route path="/naverlogin" element={<NaverLoginPage />} /> */}
 
         <Route path="/*" element={<NotFound setIsNotFound={setIsNotFound} />} />
       </Routes>

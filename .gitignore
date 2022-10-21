@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# 네이버 아이디로 로그인 keys
+.env
+
 # dependencies
 /node_modules
 /.pnp

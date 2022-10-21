@@ -2,9 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function GlobalNavigationList({ menu, children }) {
+export default function GlobalNavigationList({
+  menu,
+  children,
+  setHoveredIndex,
+  index,
+}) {
   return (
-    <li>
+    <li
+      onMouseOver={
+        setHoveredIndex ? () => setHoveredIndex(index) : e => e.preventDefault()
+      }
+      onMouseOut={
+        setHoveredIndex ? () => setHoveredIndex(-1) : e => e.preventDefault()
+      }>
       <MenuLink to="/courses">{menu.title}</MenuLink>
       {children}
     </li>

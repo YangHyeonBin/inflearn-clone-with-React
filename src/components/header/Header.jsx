@@ -4,9 +4,13 @@ import { useLocation } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
 import { cartState } from '../../recoil/Cart';
+import { useRecoilValue } from 'recoil';
+import { loginState } from '../../recoil/Login';
 
 import Dropdown from './Dropdown';
 import GlobalNavigationList from './GlobalNavigationList';
+import ModalOverlay from './ModalOverlay';
+import LoginModal from './LoginModal';
 
 import { navMenus } from './navMenus';
 import { dummyMenus } from './dummyMenus';
@@ -24,9 +28,15 @@ import { useEffect, useState } from 'react';
 
 export default function Header({ isNotFound }) {
   const [cart, setCart] = useRecoilState(cartState);
+  const loginAtomState = useRecoilValue(loginState);
 
   const [isHovering, setIsHovering] = useState(false);
   const [headerFix, setHeaderFix] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
+  const [hoveredIndexTwo, setHoveredIndexTwo] = useState(-1);
+  const [hoveredIndexThree, setHoveredIndexThree] = useState(-1);
 
   useEffect(() => {
     const headerFixHandler = () => {
@@ -44,6 +54,12 @@ export default function Header({ isNotFound }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (loginAtomState) {
+      setIsLoggedIn(true);
+    }
+  }, [loginAtomState]);
+
   // 호버할 때마다 이 컴포넌트 재실행되면서 이 코드도 계속 실행되는데, 성능 저하될까? useEffect 쓰면 price에 접근할 수 없는데, 좋은 방법이 뭐가 있을까?
   const price = cart.map(lecture =>
     Number(lecture.currentPrice.replace(/,/g, '')),
@@ -51,8 +67,19 @@ export default function Header({ isNotFound }) {
 
   const location = useLocation();
 
+  const showLoginHandler = () => {
+    setShowLogin(true);
+  };
+
+  const hideLoginHandler = () => {
+    setShowLogin(false);
+  };
+
   return (
     <HeaderWrapper hidden={isNotFound} className={headerFix ? 'fixed' : ''}>
+      <ModalOverlay blur onHideModal={hideLoginHandler} show={showLogin}>
+        <LoginModal onHideModal={hideLoginHandler} />
+      </ModalOverlay>
       <div className="header-wrapper">
         <button type="button" className="side-bar-button">
           <SideBarIcon />
@@ -71,23 +98,34 @@ export default function Header({ isNotFound }) {
               </li>
             ))} */}
             {dummyMenus.map((menu, index) => (
-              <li key={menu.title + index}>
+              <li
+                key={menu.title + index}
+                onMouseOver={() => {
+                  setHoveredIndex(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredIndex(-1);
+                }}>
                 <Link to="/courses" className="menu-item">
                   {menu.title}
                 </Link>
-                {menu.items && (
-                  <ul className="menu-container first">
-                    {menu.items.map((menu, index) => (
+                {menu.items && hoveredIndex === index && (
+                  <ul className="menu-container first" index={index}>
+                    {menu.items.map((menu, indexTwo) => (
                       <GlobalNavigationList
                         key={menu.title + index}
-                        menu={menu}>
-                        {menu.items && (
+                        menu={menu}
+                        setHoveredIndex={setHoveredIndexTwo}
+                        index={indexTwo}>
+                        {menu.items && hoveredIndexTwo === indexTwo && (
                           <ul className="menu-container two">
                             {menu.items.map((menu, index) => (
                               <GlobalNavigationList
                                 key={menu.title + index}
-                                menu={menu}>
-                                {menu.items && (
+                                menu={menu}
+                                setHoveredIndex={setHoveredIndexThree}
+                                index={index}>
+                                {menu.items && hoveredIndexThree === index && (
                                   <ul className="menu-container three">
                                     {menu.items.map((menu, index) => (
                                       <GlobalNavigationList
@@ -114,103 +152,134 @@ export default function Header({ isNotFound }) {
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
             </div>
-            <a href="#" className="recent-lecture">
-              <FontAwesomeIcon icon={faPen} id="recent-lecture-icon" />
-              최근강의
-            </a>
-            <div className="cart-wrapper">
-              <Link
-                to="/carts"
-                className={`cart-icon ${isHovering ? 'active' : ''}`}
-                aria-label="강의 장바구니"
-                onMouseOver={() => setIsHovering(true)}
-                onMouseOut={() => setIsHovering(false)}>
-                <FontAwesomeIcon icon={faCartShopping} />
-                {cart.length > 0 && (
-                  <div className="amount-badge">{cart.length}</div>
-                )}
-              </Link>
-              {isHovering && (
-                <Dropdown setIsHovering={setIsHovering}>
-                  <CartModalHeader>
-                    <div className="carted-amount">
-                      수강바구니<span>{cart.length}</span>
-                    </div>
-                    <div className="total-price">
-                      총 결제금액
-                      <strong>
-                        {String(
-                          price.reduce((curr, acc) => curr + acc, 0),
-                        ).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                      </strong>
-                      원
-                    </div>
-                  </CartModalHeader>
-                  {cart.length === 0 ? (
-                    <CartModalBody>
-                      <p className="placeholder-header">
-                        담긴 강의가 없습니다.
-                      </p>
-                      <p className="placeholder-description">
-                        나를 성장시켜줄 좋은 지식들을 찾아보세요.
-                      </p>
-                      <Link to="/courses" className="browse-lectures">
-                        강의리스트 보기
-                      </Link>
-                    </CartModalBody>
-                  ) : (
-                    <main>
-                      <CartItem>
-                        {cart.map((lecture, index) => (
-                          <li key={lecture.title + index}>
-                            <Link
-                              to={`/lecture/${lecture.title}`}
-                              className="cart-item">
-                              <img
-                                className="thumbnail"
-                                src={lecture.img}
-                                alt={`${lecture.title} 썸네일`}
-                              />
-                              <div className="lecture-info">
-                                <p className="title">{lecture.title}</p>
-                                <div className="price">
-                                  {lecture.originalPrice && (
-                                    <del>{lecture.originalPrice}</del>
-                                  )}
-                                  <strong>{lecture.currentPrice}</strong>원
-                                </div>
-                              </div>
-                            </Link>
-                          </li>
-                        ))}
-                      </CartItem>
-                      {location.pathname !== '/carts' && (
-                        <CartLink to="/carts">수강바구니에서 전체보기</CartLink>
+            {isLoggedIn ? (
+              <>
+                <a href="#" className="recent-lecture">
+                  <FontAwesomeIcon icon={faPen} id="recent-lecture-icon" />
+                  최근강의
+                </a>
+                <div className="cart-wrapper">
+                  <Link
+                    to="/carts"
+                    className={`cart-icon ${isHovering ? 'active' : ''}`}
+                    aria-label="강의 장바구니"
+                    onMouseOver={() => setIsHovering(true)}
+                    onMouseOut={() => setIsHovering(false)}>
+                    <FontAwesomeIcon icon={faCartShopping} />
+                    {cart.length > 0 && (
+                      <div className="amount-badge">{cart.length}</div>
+                    )}
+                  </Link>
+                  {isHovering && (
+                    <Dropdown setIsHovering={setIsHovering}>
+                      <CartModalHeader>
+                        <div className="carted-amount">
+                          수강바구니<span>{cart.length}</span>
+                        </div>
+                        <div className="total-price">
+                          총 결제금액
+                          <strong>
+                            {String(
+                              price.reduce((curr, acc) => curr + acc, 0),
+                            ).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                          </strong>
+                          원
+                        </div>
+                      </CartModalHeader>
+                      {cart.length === 0 ? (
+                        <CartModalBody>
+                          <p className="placeholder-header">
+                            담긴 강의가 없습니다.
+                          </p>
+                          <p className="placeholder-description">
+                            나를 성장시켜줄 좋은 지식들을 찾아보세요.
+                          </p>
+                          <Link to="/courses" className="browse-lectures">
+                            강의리스트 보기
+                          </Link>
+                        </CartModalBody>
+                      ) : (
+                        <main>
+                          <CartItem>
+                            {cart.map((lecture, index) => (
+                              <li key={lecture.title + index}>
+                                <Link
+                                  to={`/lecture/${lecture.title}`}
+                                  className="cart-item">
+                                  <img
+                                    className="thumbnail"
+                                    src={lecture.img}
+                                    alt={`${lecture.title} 썸네일`}
+                                  />
+                                  <div className="lecture-info">
+                                    <p className="title">{lecture.title}</p>
+                                    <div className="price">
+                                      {lecture.originalPrice && (
+                                        <del>{lecture.originalPrice}</del>
+                                      )}
+                                      <strong>{lecture.currentPrice}</strong>원
+                                    </div>
+                                  </div>
+                                </Link>
+                              </li>
+                            ))}
+                          </CartItem>
+                          {location.pathname !== '/carts' && (
+                            <CartLink to="/carts">
+                              수강바구니에서 전체보기
+                            </CartLink>
+                          )}
+                        </main>
                       )}
-                    </main>
+                    </Dropdown>
                   )}
-                </Dropdown>
-              )}
-            </div>
-            <div className="alert-wrapper">
-              <a href="#" className="alert-icon" aria-label="알림">
-                <FontAwesomeIcon icon={faBell} />
-              </a>
-            </div>
-            <div className="my-page-wrapper">
-              <Link
-                to="/account/dashboard"
-                className="my-page"
-                aria-label="마이페이지">
-                <FontAwesomeIcon icon={faUser} />
-              </Link>
-            </div>
+                </div>
+                <div className="alert-wrapper">
+                  <a href="#" className="alert-icon" aria-label="알림">
+                    <FontAwesomeIcon icon={faBell} />
+                  </a>
+                </div>
+                <div className="my-page-wrapper">
+                  <Link
+                    to="/account/dashboard"
+                    className="my-page"
+                    aria-label="마이페이지">
+                    <FontAwesomeIcon icon={faUser} />
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <div className="auth-container">
+                <AuthButton role="button" onClick={showLoginHandler}>
+                  로그인
+                </AuthButton>
+                <AuthButton primary>회원가입</AuthButton>
+              </div>
+            )}
           </div>
         </nav>
       </div>
     </HeaderWrapper>
   );
 }
+
+const AuthButton = styled.a`
+  border: 1px solid #dbdbdb;
+  border-radius: 0.25em;
+  padding: 0.3em 0.5em;
+  margin-right: 0.5em;
+  background-color: ${props => (props.primary ? '#ff7867' : 'white')};
+  color: ${props => (props.primary ? 'white' : '#363636')};
+  font-weight: ${props => (props.primary ? '600' : '400')};
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    background-color: ${props => (props.primary ? '#ff6d5d' : 'white')};
+  }
+`;
 
 // 큰 화면을 기준으로 작성, 미디어 쿼리로 작은 화면들에 수정해야 할 스타일 추가
 const HeaderWrapper = styled.header`
@@ -231,6 +300,10 @@ const HeaderWrapper = styled.header`
     top: 0;
     left: 0;
     width: 100%;
+  }
+
+  .auth-container {
+    padding: 0.5em 0 0.5em 0.75em;
   }
 
   .header-wrapper {
@@ -276,19 +349,12 @@ const HeaderWrapper = styled.header`
     position: absolute;
     top: 150%;
     left: 0;
-    width: 11.25em;
+    width: ${props => (props.index === '0' ? '11.25em' : 'fit-content')};
     padding: 0.5em 0;
     background-color: white;
     box-shadow: 8px 5px 8px 1px rgba(0, 10, 18, 0.1),
       0 0 0 1px rgba(0, 10, 18, 0.1);
-  }
-
-  .navigation-menu li:fisrt-child .menu-container {
-    height: 26.625em;
-  }
-
-  .menu-container:first-child {
-    height: 26.625em;
+    height: ${props => (props.index === '0' ? '29.286em' : 'auto')};
   }
 
   .menu-container.first::after {
@@ -307,18 +373,22 @@ const HeaderWrapper = styled.header`
 
   .menu-container.two {
     width: 12.858em;
+    height: 29.286em;
     top: 0;
     left: 180px;
   }
 
   .menu-container.three {
     width: 12.858em;
+    height: 29.286em;
     top: 0;
     left: 180px;
   }
 
   .menu-container li {
     font-size: 0.875rem;
+    width: fit-content;
+    white-space: nowrap;
   }
 
   .nav-right {
@@ -328,6 +398,7 @@ const HeaderWrapper = styled.header`
 
   .search {
     position: relative;
+    padding: 0.5em;
   }
 
   .search input {
@@ -350,7 +421,7 @@ const HeaderWrapper = styled.header`
   .search button {
     position: absolute;
     top: 50%;
-    right: 1em;
+    right: 1.5em;
     transform: translateY(-50%);
     cursor: pointer;
   }
