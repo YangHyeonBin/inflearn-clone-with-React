@@ -11,10 +11,13 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 export default function Swiper() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // 로드 중... 구현을 위한 것
   const [slides, setSlides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // 자동재생 & 재생 및 일시정지 구현을 위한 것
   const [currentTimerId, setCurrentTimerId] = useState(-1);
+  console.log(currentTimerId);
 
   const [play, setPlay] = useState(true);
 
@@ -36,10 +39,10 @@ export default function Swiper() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => rightArrowClickHandler(), 5000);
-    setCurrentTimerId(timer);
-
-    !play && clearTimeout(timer);
+    if (play) {
+      const timer = setTimeout(() => rightArrowClickHandler(), 5000);
+      setCurrentTimerId(timer);
+    }
   }, [currentSlide, play]);
 
   useEffect(() => {
