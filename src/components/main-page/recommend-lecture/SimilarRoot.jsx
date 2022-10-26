@@ -1,6 +1,7 @@
 import React from 'react';
 import { similarRoots } from './similarRoots';
 import Lecture from './Lecture';
+import SlideArrow from './SlideArrow copy';
 
 import { mainSectionTitles } from '../mainSectionTitles';
 import Wrapper from '../UI/Wrapper';
@@ -11,7 +12,8 @@ export default function SimilarRoot() {
   return (
     <Wrapper>
       <Heading heading={mainSectionTitles[1]} />
-      <LectureBox>
+      {/* <LectureBox> */}
+      <SlideArrow lectures={similarRoots} itemAmount="5">
         <ul className="lecture-list">
           {similarRoots.map(lecture => (
             <Lecture
@@ -34,7 +36,8 @@ export default function SimilarRoot() {
             />
           ))}
         </ul>
-      </LectureBox>
+      </SlideArrow>
+      {/* </LectureBox> */}
     </Wrapper>
   );
 }

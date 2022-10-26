@@ -1,6 +1,7 @@
 import React from 'react';
 import Lecture from './Lecture';
 import { newLectures } from './newLectures';
+import SlideArrow from './SlideArrow copy';
 
 import { mainSectionTitles } from '../mainSectionTitles';
 import Wrapper from '../UI/Wrapper';
@@ -11,7 +12,7 @@ export default function New() {
   return (
     <Wrapper>
       <Heading heading={mainSectionTitles[5]} />
-      <LectureBox>
+      <SlideArrow lectures={newLectures} itemAmount="5">
         <ul className="lecture-list">
           {newLectures.map(lecture => (
             <Lecture
@@ -30,7 +31,7 @@ export default function New() {
             />
           ))}
         </ul>
-      </LectureBox>
+      </SlideArrow>
     </Wrapper>
   );
 }

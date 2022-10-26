@@ -1,6 +1,7 @@
 import React from 'react';
 import { gitPopulars } from './gitPopulars';
 import Lecture from './Lecture';
+import SlideArrow from './SlideArrow copy';
 
 import { mainSectionTitles } from '../mainSectionTitles';
 import Wrapper from '../UI/Wrapper';
@@ -11,11 +12,11 @@ export default function GitPopular() {
   return (
     <Wrapper>
       <Heading heading={mainSectionTitles[3]} />
-      <LectureBox>
+      <SlideArrow lectures={gitPopulars} itemAmount="5">
         <ul className="lecture-list">
-          {gitPopulars.map(lecture => (
+          {gitPopulars.map((lecture, index) => (
             <Lecture
-              key={lecture.title}
+              key={lecture.title + index}
               lecture_id={lecture.id}
               title={lecture.title}
               author={lecture.author}
@@ -34,7 +35,7 @@ export default function GitPopular() {
             />
           ))}
         </ul>
-      </LectureBox>
+      </SlideArrow>
     </Wrapper>
   );
 }

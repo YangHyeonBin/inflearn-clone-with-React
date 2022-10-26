@@ -1,6 +1,7 @@
 import React from 'react';
 import { jsPopulars } from './jsPopulars';
 import Lecture from './Lecture';
+import SlideArrow from './SlideArrow copy';
 
 import { mainSectionTitles } from '../mainSectionTitles';
 import Wrapper from '../UI/Wrapper';
@@ -11,7 +12,7 @@ export default function JSPopular() {
   return (
     <Wrapper>
       <Heading heading={mainSectionTitles[2]} />
-      <LectureBox>
+      <SlideArrow lectures={jsPopulars} itemAmount="5">
         <ul className="lecture-list">
           {jsPopulars.map(lecture => (
             <Lecture
@@ -34,7 +35,7 @@ export default function JSPopular() {
             />
           ))}
         </ul>
-      </LectureBox>
+      </SlideArrow>
     </Wrapper>
   );
 }

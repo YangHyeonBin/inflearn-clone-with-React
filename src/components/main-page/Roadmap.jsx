@@ -1,7 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import { roadmaps } from './roadmaps';
 import RoadmapItem from './RoadmapItem';
-import SlideArrow from './recommend-lecture/SlideArrow';
+import SlideArrow from './recommend-lecture/SlideArrow copy';
 
 import { mainSectionTitles } from './mainSectionTitles';
 import Wrapper from './UI/Wrapper';
@@ -11,9 +13,8 @@ export default function Roadmap() {
   return (
     <Wrapper>
       <Heading heading={mainSectionTitles[7]} />
-      <div className="lecture-wrapper roadmap">
-        <SlideArrow />
-        <ul className="roadmap-container">
+      <SlideArrow lectures={roadmaps} itemAmount="4" roadmapPadding={true}>
+        <RoadmapWrapper>
           {roadmaps.map(roadmap => (
             <RoadmapItem
               key={roadmap.title}
@@ -21,8 +22,12 @@ export default function Roadmap() {
               title={roadmap.title}
             />
           ))}
-        </ul>
-      </div>
+        </RoadmapWrapper>
+      </SlideArrow>
     </Wrapper>
   );
 }
+
+const RoadmapWrapper = styled.ul`
+  display: flex;
+`;
