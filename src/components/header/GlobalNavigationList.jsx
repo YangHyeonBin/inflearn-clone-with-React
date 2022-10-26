@@ -9,7 +9,7 @@ export default function GlobalNavigationList({
   index,
 }) {
   return (
-    <li
+    <NavItem
       onMouseOver={
         setHoveredIndex ? () => setHoveredIndex(index) : e => e.preventDefault()
       }
@@ -18,13 +18,18 @@ export default function GlobalNavigationList({
       }>
       <MenuLink to="/courses">{menu.title}</MenuLink>
       {children}
-    </li>
+    </NavItem>
   );
 }
+
+const NavItem = styled.li`
+  width: 100%;
+`;
 
 const MenuLink = styled(Link)`
   display: block;
   padding: 0.375rem 1rem;
+  width: 100%;
 
   &:hover {
     color: #242424;

@@ -17,7 +17,6 @@ export default function Swiper() {
 
   // 자동재생 & 재생 및 일시정지 구현을 위한 것
   const [currentTimerId, setCurrentTimerId] = useState(-1);
-  console.log(currentTimerId);
 
   const [play, setPlay] = useState(true);
 

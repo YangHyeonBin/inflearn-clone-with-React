@@ -12,7 +12,6 @@ import GlobalNavigationList from './GlobalNavigationList';
 import ModalOverlay from './ModalOverlay';
 import LoginModal from './LoginModal';
 
-import { navMenus } from './navMenus';
 import { dummyMenus } from './dummyMenus';
 
 import { ReactComponent as InflearnLogo } from '../../assets/icons/inflearn-logo.svg';
@@ -90,13 +89,6 @@ export default function Header({ isNotFound }) {
         </BrandLogoLink>
         <nav>
           <ul className="navigation-menu">
-            {/* {navMenus.map((menu, index) => (
-              <li key={menu + index}>
-                <Link to="/courses" className="menu-item">
-                  {menu}
-                </Link>
-              </li>
-            ))} */}
             {dummyMenus.map((menu, index) => (
               <li
                 key={menu.title + index}
@@ -110,7 +102,10 @@ export default function Header({ isNotFound }) {
                   {menu.title}
                 </Link>
                 {menu.items && hoveredIndex === index && (
-                  <ul className="menu-container first" index={index}>
+                  <ul
+                    className={`menu-container first ${
+                      index === 0 ? 'first-child' : ''
+                    }`}>
                     {menu.items.map((menu, indexTwo) => (
                       <GlobalNavigationList
                         key={menu.title + index}
@@ -349,12 +344,16 @@ const HeaderWrapper = styled.header`
     position: absolute;
     top: 150%;
     left: 0;
-    width: ${props => (props.index === '0' ? '11.25em' : 'fit-content')};
     padding: 0.5em 0;
     background-color: white;
     box-shadow: 8px 5px 8px 1px rgba(0, 10, 18, 0.1),
       0 0 0 1px rgba(0, 10, 18, 0.1);
-    height: ${props => (props.index === '0' ? '29.286em' : 'auto')};
+  }
+
+  .menu-container.first.first-child {
+    /* font-size = 16px = 1em */
+    width: 11.25em;
+    height: 25.625em;
   }
 
   .menu-container.first::after {
@@ -372,6 +371,7 @@ const HeaderWrapper = styled.header`
   }
 
   .menu-container.two {
+    /* font-size = 14px =1em */
     width: 12.858em;
     height: 29.286em;
     top: 0;
@@ -387,7 +387,6 @@ const HeaderWrapper = styled.header`
 
   .menu-container li {
     font-size: 0.875rem;
-    width: fit-content;
     white-space: nowrap;
   }
 
