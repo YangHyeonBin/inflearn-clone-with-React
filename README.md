@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# '인프런' 사이트 클론 코딩 프로젝트입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📍 사용 기술
 
-## Available Scripts
+- React
+- CSS, styled-components
+- react-router-dom
+- Recoil
 
-In the project directory, you can run:
+## 🔥 진행 상황
 
-### `npm start`
+### 페이지
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 메인 페이지 (헤더, 푸터, 캐러셀, 검색창, 컨텐츠 목록, 장바구니 모달, 글로벌 네비게이션 바)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 강의 목록 페이지
 
-### `npm test`
+- 마이페이지 '대시 보드'
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 마이페이지 '좋아요'
 
-### `npm run build`
+- 강의 상세 페이지 (강의 설명 추가 중)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Not Found 페이지
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 캐러셀: 자동 슬라이드, 슬라이드 일시정지 및 재생, 특정 슬라이드로 이동 버튼 ([캐러셀 구현 기록 보기](https://velog.io/@ekil_like/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%BA%90%EB%9F%AC%EC%85%80-%EA%B5%AC%ED%98%84))
 
-### `npm run eject`
+- 강의 검색창 (검색어만 초록색 되도록 보완 필요)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 가로로 긴 컨텐츠 -> 원하는 개수만큼만 나타내고, 버튼 클릭 시 이전/다음 컨텐츠로 슬라이드 (메인 페이지의 각 강의 목록과 '더 둘러보기'에 적용)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 배너: 앞뒤 슬라이드 버튼, 현재 페이지 나타내는 하단 바
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 장바구니 담기, 좋아요 기능: 강의 상세 페이지에서 해당 강의를 장바구니에 담거나 좋아요를 누르면, 장바구니 모달과 좋아요 페이지에 그 강의 추가
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 소셜 로그인: 카카오, 네이버 구현 중
 
-## Learn More
+### 반응형
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 메인 페이지: 헤더, 푸터, 신청하기 섹션 (기준점: 768px, 1024px)
