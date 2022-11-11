@@ -83,9 +83,10 @@ const LectureLink = styled(Link)`
 
   .thumbnail {
     display: block;
-    width: 14.45em;
-    height: 9.375em;
-    /* width: 100%; */
+    /* width: 14.45em;
+    height: 9.375em; */
+    width: 100%;
+    height: 100%;
     margin-bottom: 0.5em;
   }
 

@@ -7,7 +7,7 @@ import { navigations } from './navigations';
 export default function DashBoardPage(props) {
   return (
     <MyPageWrapper aria-label="인프런 마이페이지">
-      <div className="title">
+      <div className="my-page-title">
         <h2>{props.title}</h2>
       </div>
       <MyPageMain>
@@ -40,12 +40,12 @@ export default function DashBoardPage(props) {
 }
 
 const MyPageWrapper = styled.main`
-  .title {
+  .my-page-title {
     padding: 0.5rem 0;
     background-color: rgb(52, 58, 64);
   }
 
-  .title h2 {
+  .my-page-title h2 {
     padding: 0 2rem;
     margin: 0 auto;
     max-width: 75rem;
