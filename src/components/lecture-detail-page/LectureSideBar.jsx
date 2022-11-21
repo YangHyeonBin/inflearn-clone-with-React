@@ -23,19 +23,19 @@ export default function LectureSideBar({ lecture }) {
   const currentLectureIndex = allLectures.indexOf(lecture);
 
   const likeClickHandler = () => {
+    const amount1 = likeAmount.slice(0, currentLectureIndex);
+    const amount2 = likeAmount.slice(currentLectureIndex + 1);
+    let modifiedAmount;
+
     if (likeList.includes(lecture)) {
       setLikeList(likeList.filter(item => item.title !== lecture.title));
-      const amount1 = likeAmount.slice(0, currentLectureIndex);
-      const amount2 = likeAmount.slice(currentLectureIndex + 1);
-      const modifiedAmount = Number(likeAmount[currentLectureIndex]) - 1;
-      setLikeAmount([...amount1, `${modifiedAmount}`, ...amount2]);
+      modifiedAmount = Number(likeAmount[currentLectureIndex]) - 1;
     } else {
       setLikeList([...likeList, lecture]);
-      const amount1 = likeAmount.slice(0, currentLectureIndex);
-      const amount2 = likeAmount.slice(currentLectureIndex + 1);
-      const modifiedAmount = Number(likeAmount[currentLectureIndex]) + 1;
-      setLikeAmount([...amount1, `${modifiedAmount}`, ...amount2]);
+      modifiedAmount = Number(likeAmount[currentLectureIndex]) + 1;
     }
+
+    setLikeAmount([...amount1, `${modifiedAmount}`, ...amount2]);
   };
 
   const addToCartHandler = () => {
