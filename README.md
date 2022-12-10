@@ -40,3 +40,7 @@
 ### 반응형
 
 - 메인 페이지: 헤더, 푸터, 신청하기 섹션 (기준점: 768px, 1024px)
+
+## 미리보기
+
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/272e4bb2-1fc0-41df-896b-8f5b9edfc66b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221210%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221210T052940Z&X-Amz-Expires=86400&X-Amz-Signature=b427fa8eb24d04849736f0aa2466ffc8a7b0114c663eda77c716b3f221806036&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject" alt="인프런 클론코딩 메인페이지 캡처" />
